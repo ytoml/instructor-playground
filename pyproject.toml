@@ -1,0 +1,58 @@
+[tool.poetry]
+name = "instructor_playground"
+version = "0.1.0"
+description = "Playground"
+authors = [
+    "Yuna Tomida <ytomida.mmm@gmail.com>"
+]
+packages = [
+    { include = "mylib", from = "." }
+]
+
+[tool.poetry.dependencies]
+python = "~3.11"
+openai = "^1.14.1"
+instructor = "^0.6.4"
+litellm = {version = "^1.32.1", extras = ["proxy"]}
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.3.0"
+flake8 = "^7.0.0"
+flake8-pyproject = "^1.2.3"
+isort = "^5.13.2"
+mypy = "^1.9.0"
+pytest = "^8.1.1"
+ipython = "^8.22.2"
+pre-commit = "^3.6.2"
+
+[build-system]
+requires = ["poetry>=1.1"]
+build-backend = "poetry.masonry.api"
+
+[tool.black]
+line-length = 79
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[tool.mypy]
+ignore_missing_imports = true
+exclude = []
+plugins = []
+follow_imports = "silent"
+warn_redundant_casts = true
+warn_unused_ignores = true
+check_untyped_defs = true
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+warn_untyped_fields = true
+
+[tool.flake8]
+ignore = "D203,W605,E501,W503,E203,C901"
+exclude = ".git,__pycache__,docs/source/conf.py,old,build,dist,.venv,env"
+max-complexity = 10
+max-line-length = 79
